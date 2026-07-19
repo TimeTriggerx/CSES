@@ -49,69 +49,66 @@ using pll = pair<ll, ll>;
 #define NO cout<<"NO\n"
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll myRand(ll B) {
-    return (ull)rng() % B;
+	return (ull)rng() % B;
 }
 
 clock_t startTime;
 double getCurrentTime() {
-    return (double)(clock() - startTime) / CLOCKS_PER_SEC;
+	return (double)(clock() - startTime) / CLOCKS_PER_SEC;
 }
 void fast_io() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
 }
 
 ll floor_div(ll x, ll y) {
-    assert(y != 0);
-    if (y < 0) {
-        y = -y;
-        x = -x;
-    }
-    if (x >= 0) return x / y;
-    return (x + 1) / y - 1;
+	assert(y != 0);
+	if (y < 0) {
+		y = -y;
+		x = -x;
+	}
+	if (x >= 0) return x / y;
+	return (x + 1) / y - 1;
 }
 ll ceil_div(ll x, ll y) {
-    assert(y != 0);
-    if (y < 0) {
-        y = -y;
-        x = -x;
-    }
-    if (x <= 0) return x / y;
-    return (x - 1) / y + 1;
+	assert(y != 0);
+	if (y < 0) {
+		y = -y;
+		x = -x;
+	}
+	if (x <= 0) return x / y;
+	return (x - 1) / y + 1;
 }
 template<typename T>
 T sqr(T x) {
-    return x * x;
+	return x * x;
 }
 
+const ll MOD = 1e9 + 7;
+ll power(ll a, ll b) {
+	ll res = 1;
+	a %= MOD;
+
+	while (b) {
+		if (b & 1)
+			res = (res * a) % MOD;
+
+		a = (a * a) % MOD;
+		b >>= 1;
+	}
+
+	return res;
+}
 
 
 int main() {
 
-    startTime = clock();
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+	startTime = clock();
+	// freopen("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
 
-    ll n;  scanf("%lld", &n);
-    ll sum = (1LL * n * (n + 1)) / 2;
-    if (sum % 2 != 0) {
-        cout << "NO";
-        return 0;
-    }
-    ll target = sum / 2;
-    cout << "YES\n";
-    vector<ll> s1, s2;
-    for (ll i = n; i >= 1; i--) {
-        if (target >= i) {
-            s1.push_back(i);
-            target -= i;
-        }
-        else s2.push_back(i);
-    }
+	ll n;  scanf("%lld", &n);
+	printf("%lld", power(2, n));
 
-    cout << s1.size() << "\n";
-    for (int x : s1) cout << x << " ";
-    cout   << "\n" << s2.size() << "\n";
-    for (int x : s2) cout << x << " ";
-
+	return 0;
 }
